@@ -1,6 +1,8 @@
 #pragma once
 #include<string>
 using namespace std;
+
+enum class status { scheduled, boarding, arrived, departed, delayed, cancelled };
 class Flight {
 	string flightID; //each flight has a unique flight id
 	string airline;// the name of airline to which flight is attatched
@@ -10,15 +12,15 @@ class Flight {
 	string arrivalTime;
 	bool emergency;
 	string gateNumber;//assigned gate to the flight-should be strictly followed to avoid mess
-	enum class status { scheduled, boarding, arrived, departed, delayed, cancelled };
+	status flightStatus;
 public:
-	Flight(string id,string al,string org,string dest,string dt,string at,string gn);
+	Flight(string id,string al,string org,string dest,string dt,string at,string gn,status s);
 	~Flight();
 		//Accessors and mutators
 //Setters
-	void setStatus(string status);
+	void setStatus( status s);
 	void updateDepartureTime(string time);
-	void assignGate(string gateNumber);
+	void assignGate(string gn);
 	void setEmergency();
 //Getters
 	string getId();
